@@ -1,4 +1,4 @@
-module github.com/COSI-Lab/Mirror/geoip
+module github.com/COSI-Lab/geoip
 
 go 1.18
 

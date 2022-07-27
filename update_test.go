@@ -44,6 +44,7 @@ func TestDownloadDatabase(t *testing.T) {
 		t.Error("MAXMIND_LICENSE_KEY environment variable not set")
 		return
 	}
+
 	// Prepare the checksum
 	sha256, err := downloadHash(licenseKey)
 	if err != nil {
@@ -65,7 +66,11 @@ func TestDownloadDatabase(t *testing.T) {
 
 func TestLookups(t *testing.T) {
 	// Get the license key through environment variables
-	licenseKey := "O1MFhnxCY9aKUyio"
+	licenseKey := os.Getenv("MAXMIND_LICENSE_KEY")
+	if licenseKey == "" {
+		t.Error("MAXMIND_LICENSE_KEY environment variable not set")
+		return
+	}
 
 	geoip, err := NewGeoIPHandler(licenseKey)
 	if err != nil {
